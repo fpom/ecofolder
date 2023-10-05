@@ -6,6 +6,8 @@ LIBS =
 FLAGS = 
 INCLUDES =
 
+BINDIR = "$$HOME/.local/stow/ecofolder-231004/bin"
+
 ##############################################################
 #https://gcc.gnu.org/onlinedocs/gcc/C-Dialect-Options.html
 #-std=gnu18
@@ -34,6 +36,10 @@ OBJECTS_LD = llnet2dot.o common.o
 OBJECTS_SAT = mci2sat.o common.o
 	  
 default: $(TARGET)
+
+install: default
+	mkdir -p $(BINDIR)
+	cp -a $(TARGET) $(BINDIR)
 
 clean:
 	rm -f $(OBJECTS) $(OBJECTS_EV) $(OBJECTS_CPR) $(OBJECTS_PR) $(OBJECTS_RS) $(OBJECTS_LD) $(OBJECTS_SAT) $(TMPFILES) $(TARGET) core* *.output *.d .deps gmon.out
